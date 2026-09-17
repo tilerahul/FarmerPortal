@@ -1,7 +1,8 @@
 # Agri Procurement & Farmer Management System — Documentation Index
 
-> **Status:** Draft v0.1 — 2026-09-16
+> **Status:** v1.1 — reconciled with the delivered documentation set (docs 01–25 + audit report). 2026-09-17.
 > **Location:** `docs/00_DOCUMENTATION_INDEX.md` — entry point for the entire documentation set.
+> **Note on naming:** The original plan (this file's earlier draft) listed placeholder names such as `01_PROJECT_OVERVIEW.md`, `02_BUSINESS_PROCESSES.md`, `03_FUNCTIONAL_REQUIREMENTS.md`, `05_DATA_MODEL.md`, `09_NON_FUNCTIONAL_AND_SECURITY.md`, `11_PHASE_2_ROADMAP.md`, `12_FARMER_PORTAL_REQUIREMENTS.md`, `13_GLOSSARY.md` and `14_OPEN_QUESTIONS_AND_DECISIONS.md`. Those slots were delivered under their actual names listed in §10 (e.g., `01_PRODUCT_REQUIREMENTS_DOCUMENT.md`, `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md`). A glossary was not delivered as a separate document; terminology is defined in place within `04_MODULE_SPECIFICATION.md` and the PRD/BRD.
 
 ---
 
@@ -46,8 +47,8 @@ Source: Project Objective (`[SOURCE §1]`).
 - **Scope:** Provide a **Farmer Login** and a **Farmer Web Portal** so farmers can access their own information electronically.
 - **Delivery format:** Responsive web/mobile-browser based in Phase 1. There is **no separate native mobile application** in Phase 1 unless explicitly approved later.
 - The registered mobile number remains the identity anchor tied to the Farmer ID (consistent with the source WhatsApp design; `[SOURCE §3, §21]`).
-- Detailed requirements are defined in `12_FARMER_PORTAL_REQUIREMENTS.md`.
-- Exact feature list and phase placement are still to be confirmed — see OQ-01 / OQ-02 in §15.
+- Detailed requirements are defined in `07_FARMER_PORTAL_SPECIFICATION.md`.
+- Exact feature list and phase placement are still to be confirmed — see OQ-01 / OQ-02 in §15 (consolidated in `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md`).
 
 ## 7. Phase 1 Scope — Core Procurement, Payment & Statement System
 
@@ -82,7 +83,7 @@ From `[SOURCE §2–§20]` plus the `[NEW]` Farmer Portal:
 
 ## 8. Phase 2 Scope — WhatsApp Chatbot & Area-wise Access
 
-From `[SOURCE §21–§24]`:
+From `[SOURCE §21–§24]` (detailed in `24_PHASE_ROADMAP.md`):
 
 - **WhatsApp Chatbot:** farmers interact via WhatsApp; registered mobile → Farmer ID (`[SOURCE §21]`). Queries: Outstanding, Ledger, Purchases, Payments, Last Payment, Last Purchase, Invoice Details, Statement, Payment Status.
 - **Area-wise Farmer Allocation:** farmers and employees assigned to areas; employees restricted to their own area at backend/database authorization level (`[SOURCE §22]`).
@@ -99,60 +100,92 @@ From `[SOURCE §21–§24]`:
 - **Scale:** initial 10,000 farmers / 100 employees → target 50,000 farmers / 500 employees without fundamental redevelopment (`[SOURCE §1, §19]`).
 - **Volume:** database must support potentially millions of transaction records; design for transaction volume, not just farmer count (`[SOURCE §19]`).
 - **Future-ready fields** (inactive in Phase 1, architected for later) (`[SOURCE §20]`): Area, Collection centre, GPS, Quality/grade, Lot number, Batch number, Warehouse, Packing, Export shipment.
-- **Phase 2 roadmap** (chatbot + area-wise access) is pre-defined (`[SOURCE §21–§24]`).
+- **Phase 2 roadmap** (chatbot + area-wise access) is pre-defined (`[SOURCE §21–§24]`) and detailed in `24_PHASE_ROADMAP.md`.
 - `[NEW]` Farmer web portal can be extended in future phases without a mobile-app dependency.
 
 ## 10. Documentation Index
 
-The planned documentation set. Only `00` exists today; the remaining documents are created in subsequent steps.
+The full delivered documentation set. Every `docs/NN_*.md` is a numbered core document (00 is this index, 01–25 are the specification set); `DOCUMENTATION_AUDIT_REPORT.md` is a companion review document (not part of the numbered sequence).
 
 | # | File name | Purpose | Contains | Depends on |
 |---|---|---|---|---|
-| 00 | `00_DOCUMENTATION_INDEX.md` | Entry point; navigation, scope and source rules | This index: project summary, transaction chain, user types, scopes, doc index, reading order, source-of-truth rules, requirement inventory, open questions | None |
-| 01 | `01_PROJECT_OVERVIEW.md` | High-level project context | Objectives, purpose, scope summaries (Phase 1/2), scale targets, future-ready capabilities | 00 |
-| 02 | `02_BUSINESS_PROCESSES.md` | End-to-end business workflows | Procurement workflow, payment & reconciliation workflow, monthly statement workflow, WhatsApp notification flows, cancellation & audit handling | 01 |
-| 03 | `03_FUNCTIONAL_REQUIREMENTS.md` | Requirement catalogue | Phase 1 & 2 functional requirements with IDs and source tags (`[SOURCE §n]`, `[NEW]`, `[PENDING]`) and acceptance criteria | 01, 02 |
-| 04 | `04_USER_ROLES_AND_PERMISSIONS.md` | Identity & access control | User types (Super Admin, Employee, Farmer `[NEW]`), permission matrix, configurable role permissions, area-based restrictions (Phase 2) | 01, 03 |
-| 05 | `05_DATA_MODEL.md` | Data architecture | Entity list; field specs (Farmer/Employee Master, Invoice, Ledger, Payment, Statement log, Notification log); invoice numbering & sequencing rules; scalability/volume notes | 03 |
-| 06 | `06_INTEGRATIONS.md` | External integrations | Banking/API integration patterns, payment status/UTR handling, exception/reconciliation queue, WhatsApp integration, message templates | 03, 05 |
-| 07 | `07_UI_WORKFLOW_SPECS.md` | Screen-level UX specifications | Screens & user flows: employee procurement, invoice confirmation, admin dashboard, reports, farmer portal screens `[NEW]`, responsive behaviour | 03, 04 |
-| 08 | `08_API_SPECIFICATION.md` | API contracts | Internal/external API contracts, request/response, authentication, webhooks, error handling for Banking and WhatsApp providers | 03, 05, 06 |
-| 09 | `09_NON_FUNCTIONAL_AND_SECURITY.md` | Non-functional & security requirements | Security controls (`§18`), audit trail (`§17`), scalability (`§19`), performance, backup/restoration, session & rate limiting, compliance | 01, 03 |
-| 10 | `10_REPORTING_SPECIFICATIONS.md` | Reports catalogue & formats | Report definitions (farmer/procurement/payment), filters, export formats (Excel/PDF/CSV), scheduling & delivery | 03, 05 |
-| 11 | `11_PHASE_2_ROADMAP.md` | Phase 2 roadmap | Chatbot query specs, area-wise allocation & authorization rules, Phase 2 admin functions & reporting | 03, 09 |
-| 12 | `12_FARMER_PORTAL_REQUIREMENTS.md` | `[NEW]` Farmer Login & Portal | Farmer login, portal feature list, responsive web/mobile-browser scope, exclusion of mobile app in Phase 1, authentication & onboarding approach | 03, 04 |
-| 13 | `13_GLOSSARY.md` | Terminology reference | Definitions: Farmer ID, Ledger, UTR, Invoice sequence, Outstanding, Statement, Area, Collection centre, etc. | 01 |
-| 14 | `14_OPEN_QUESTIONS_AND_DECISIONS.md` | Decision and open-question log | Undefined items (tagged by origin), decisions and rationale, change history | All |
+| 00 | `00_DOCUMENTATION_INDEX.md` | Entry point; navigation, scope and source rules | This index: project summary, transaction chain, user types, Phase 1/2 scopes, doc index, reading order, source-of-truth rules, PDF-derived requirement inventory, NEW list, open-question summary | None |
+| 01 | `01_PRODUCT_REQUIREMENTS_DOCUMENT.md` | Product Requirements Document (PRD) | Complete Phase 1 (and Phase 2 outline) product requirements with IDs, tags (`[SOURCE §n]`/`[NEW]`/MUST/SHOULD/MAY), acceptance criteria, §28 open questions | 00 |
+| 02 | `02_BUSINESS_REQUIREMENTS_DOCUMENT.md` | Business Requirements Document (BRD) | Business rules, roles, scenarios, business constraints and assumptions, §25 open questions | 01 |
+| 03 | `03_BUSINESS_WORKFLOWS.md` | End-to-end business workflows | Procurement, payment & reconciliation, monthly statement, WhatsApp notification, correction/cancellation and audit workflows | 01, 02 |
+| 04 | `04_MODULE_SPECIFICATION.md` | Module Specification | Every system module: purpose, actors, responsibilities, features, inputs/outputs, business rules, dependencies, permissions, data, notifications, audit and phase | 01, 02, 03 |
+| 05 | `05_USER_ROLES_AND_USER_STORIES.md` | User roles, permissions & user stories | User types (Super Admin, Employee, Farmer `[NEW]`), role permissions, permission matrix, user stories and persona constraints | 01, 02 |
+| 06 | `06_FUNCTIONAL_REQUIREMENTS.md` | Functional Requirements catalogue | Cross-module FR-… requirement IDs with business rules, MUST/SHOULD/MAY priority, verification and acceptance criteria | 01, 02, 04 |
+| 07 | `07_FARMER_PORTAL_SPECIFICATION.md` | `[NEW]` Farmer Portal Specification | Farmer login & web portal: feature list, screens, authentication approach, Phase 1 responsive web scope, exclusion of native mobile app | 01, 05 |
+| 08 | `08_PROCUREMENT_AND_INVOICE_SPECIFICATION.md` | Procurement & Invoice Specification | Procurement entry workflow, invoice numbering & per-farmer sequence, confirmation display, cancellation rules, SC-… rules | 01, 04, 06 |
+| 09 | `09_PAYMENT_AND_RECONCILIATION_SPECIFICATION.md` | Payment & Reconciliation Specification | Payment module (full/partial/multiple payments, multiple invoices per payment), allocation rules, reconciliation/exception queue, statuses (matched/unmatched/failed/pending/duplicate), PM-… rules | 08, 10, 16 |
+| 10 | `10_LEDGER_AND_STATEMENT_SPECIFICATION.md` | Ledger & Statement Specification | Farmer-wise ledger, automatic monthly statement (1st of month, prior month, PDF, WhatsApp), statement statuses & retry, LS-… rules | 01, 08 |
+| 11 | `11_WHATSAPP_INTEGRATION_SPECIFICATION.md` | WhatsApp Integration Specification | WhatsApp purchase/payment notifications, chatbot queries, message templates, utility vs template constraints, delivery statuses | 19, 20 |
+| 12 | `12_RBAC_AND_AUTHORIZATION.md` | RBAC & Authorization | Role permission matrix, module-level access, area-wise farmer/employee allocation and backend/database authorization (Phase 2) | 05 |
+| 13 | `13_REPORTS_AND_DASHBOARD_SPECIFICATION.md` | Reports & Dashboard Specification | Reports catalogue (farmer/procurement/payment/area-wise), Excel/PDF/CSV exports, admin dashboard KPIs & date filters | 06, 08, 09 |
+| 14 | `14_AUDIT_LOGGING_AND_DATA_INTEGRITY.md` | Audit Logging & Data Integrity | Audit trail (employee ID, date/time, action, before/after, record, IP/device), no silent overwrite of financials, immutability and integrity rules | 01, 08, 09, 10 |
+| 15 | `15_DATABASE_DESIGN.md` | Database Design | Entity/table design, fields, keys & indexes, invoice sequence storage, ledger/payment/statement tables, transaction-volume notes | 06, 08, 09, 10 |
+| 16 | `16_API_SPECIFICATION.md` | API Specification | Internal/external API contracts, request/response schemas, authentication & rate limiting, webhooks, error handling | 09, 12, 15, 19 |
+| 17 | `17_UI_UX_SPECIFICATION.md` | UI/UX Specification | Screen specifications, user flows, responsive/mobile-browser behaviour, component & accessibility guidance | 05, 07, 12 |
+| 18 | `18_SECURITY_AND_PRIVACY.md` | Security & Privacy | `§18` controls: authentication, password policy, OTP/2FA, encryption (at rest / in transit), RBAC, automated backups & restoration testing, audit logging, session & rate limiting | 12, 14, 15, 16 |
+| 19 | `19_EXTERNAL_INTEGRATIONS.md` | External Integrations | Banking/API integration and WhatsApp provider patterns, event flows, exception queue, provider-selection considerations | 09, 11 |
+| 20 | `20_NOTIFICATION_SPECIFICATION.md` | Notification Specification | Notification matrix, message templates, delivery statuses & retry policy, channel rules (WhatsApp / in-portal) | 10, 11, 19 |
+| 21 | `21_TESTING_STRATEGY.md` | Testing Strategy | Test strategy, levels & environments, test data, acceptance against requirements, regression and security testing | 06, 16, 17 |
+| 22 | `22_DEPLOYMENT_AND_DEVOPS.md` | Deployment & DevOps | Environments, CI/CD, release process, backup & restore operations, monitoring, rollback | 15, 18 |
+| 23 | `23_SCALABILITY_AND_PERFORMANCE.md` | Scalability & Performance | Scale targets (10k → 50k farmers / 100 → 500 employees), millions of transaction records, concurrency, performance budgets, caching & tuning | 01, 06, 15, 16 |
+| 24 | `24_PHASE_ROADMAP.md` | Phase Roadmap | Phase 1 vs Phase 2 scope split, delivery roadmap, future-ready fields kept inactive (`§20`), dependencies and sequencing | 01 |
+| 25 | `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` | Open Questions & Assumptions — Master List | Canonical decision register consolidating every open question / OQ-… / Q-…-id / assumption from docs 01–24 into rows with aliases, owners, options, current assumptions and impact | All (01–24) |
+
+**Companion documents**
+
+| Ref | File name | Purpose |
+|---|---|---|
+| — | `DOCUMENTATION_AUDIT_REPORT.md` | Severity-graded cross-document consistency audit of the PDF ground truth vs docs 00–25 (AUD-…), 26-point checklist coverage, remediable findings and action plan |
 
 ## 11. Recommended Reading Order (dependency-first)
 
 1. `00_DOCUMENTATION_INDEX.md` (this file — start here)
-2. `01_PROJECT_OVERVIEW.md`
-3. `02_BUSINESS_PROCESSES.md`
-4. `03_FUNCTIONAL_REQUIREMENTS.md`
-5. `04_USER_ROLES_AND_PERMISSIONS.md`
-6. `12_FARMER_PORTAL_REQUIREMENTS.md` `[NEW]`
-7. `05_DATA_MODEL.md`
-8. `06_INTEGRATIONS.md`
-9. `07_UI_WORKFLOW_SPECS.md`
-10. `08_API_SPECIFICATION.md`
-11. `09_NON_FUNCTIONAL_AND_SECURITY.md`
-12. `10_REPORTING_SPECIFICATIONS.md`
-13. `13_GLOSSARY.md` (reference only — use at any point)
-14. `11_PHASE_2_ROADMAP.md`
-15. `14_OPEN_QUESTIONS_AND_DECISIONS.md` (maintained continuously alongside the above)
+2. `01_PRODUCT_REQUIREMENTS_DOCUMENT.md`
+3. `02_BUSINESS_REQUIREMENTS_DOCUMENT.md`
+4. `03_BUSINESS_WORKFLOWS.md`
+5. `04_MODULE_SPECIFICATION.md`
+6. `05_USER_ROLES_AND_USER_STORIES.md`
+7. `06_FUNCTIONAL_REQUIREMENTS.md`
+8. `07_FARMER_PORTAL_SPECIFICATION.md` `[NEW]`
+9. `08_PROCUREMENT_AND_INVOICE_SPECIFICATION.md`
+10. `10_LEDGER_AND_STATEMENT_SPECIFICATION.md`
+11. `09_PAYMENT_AND_RECONCILIATION_SPECIFICATION.md`
+12. `14_AUDIT_LOGGING_AND_DATA_INTEGRITY.md`
+13. `15_DATABASE_DESIGN.md`
+14. `16_API_SPECIFICATION.md`
+15. `12_RBAC_AND_AUTHORIZATION.md`
+16. `18_SECURITY_AND_PRIVACY.md`
+17. `19_EXTERNAL_INTEGRATIONS.md`
+18. `11_WHATSAPP_INTEGRATION_SPECIFICATION.md`
+19. `20_NOTIFICATION_SPECIFICATION.md`
+20. `13_REPORTS_AND_DASHBOARD_SPECIFICATION.md`
+21. `17_UI_UX_SPECIFICATION.md`
+22. `21_TESTING_STRATEGY.md`
+23. `22_DEPLOYMENT_AND_DEVOPS.md`
+24. `23_SCALABILITY_AND_PERFORMANCE.md`
+25. `24_PHASE_ROADMAP.md` (Phase 2 planning)
+
+Reference / maintained continuously alongside the above:
+- `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` — read per-doc open items against this master register as each document is reviewed.
+- `DOCUMENTATION_AUDIT_REPORT.md` — review companion; findings are addressed before implementation.
 
 ## 12. Source of Truth & Documentation Rules
 
 - **Primary source of truth:** `AgriProcurement & Farmer Management.pdf` (repository root). Requirements from it are referenced by section number, e.g. `[SOURCE §6]`.
 - **No silent invention:** Do not silently invent requirements.
 - **No removal or alteration:** Do not remove or change existing business rules from the source document.
-- **Not specified:** Anything not found in the source document must be explicitly marked **"Not specified in the source requirements."** and tracked in `14_OPEN_QUESTIONS_AND_DECISIONS.md`.
+- **Not specified:** Anything not found in the source document must be explicitly marked **"Not specified in the source requirements."** and tracked in `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md`.
 - **Enhancements:** Any suggested addition must be marked **"Proposed Enhancement."**
 - **New requirements:** Approved additions (e.g., Farmer Login / Farmer Portal) are marked `[NEW]` and listed in §14.
 - **Phase 1 delivery rule:** Farmers do not receive a separate native mobile application in Phase 1; the Farmer Portal is responsive web/mobile-browser based. Any later mobile app requires explicit approval.
-- **Change control:** Any deviation from a source business rule must be recorded as a decision in `14_OPEN_QUESTIONS_AND_DECISIONS.md` before implementation.
-- **Process rule (current step):** Producing product and technical documentation only; no application code is written in this preparation phase.
+- **Change control:** Any deviation from a source business rule must be recorded as a decision in `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` before implementation.
+- **Consolidation:** Each document keeps its own local open-question IDs (OQ-…, Q-… series); `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` is the single master register that consolidates them (aliases marked `≡`).
+- **Process rule (current phase):** Producing product and technical documentation only; no application code is written in this preparation phase.
 
 ## 13. Requirements That Came From the Original PDF
 
@@ -202,7 +235,7 @@ All items below originate from `AgriProcurement & Farmer Management.pdf`. Tags `
 | N-04 | Documentation-first preparation phase | Approved process | Product & technical documentation produced before any implementation code. |
 | N-05 | Requirement tagging conventions | Approved rule | `[SOURCE §n]`, `[NEW]`, "Not specified in the source requirements.", "Proposed Enhancement." |
 
-## 15. Undefined / Open Questions
+## 15. Undefined / Open Questions (summary — master register in `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md`)
 
 | ID | Item | Origin | Current status / notes |
 |---|---|---|---|
@@ -221,8 +254,8 @@ All items below originate from `AgriProcurement & Farmer Management.pdf`. Tags `
 | OQ-13 | Farmer identity deduplication | Not specified in the source requirements | Same mobile/WhatsApp number against multiple Farmer IDs. |
 | OQ-14 | Statement generation timing & retry policy details | Partially specified in the source requirements | Day-1 prior month + delivery statuses given; exact time, timezone, retry frequency not specified. |
 
-*(All items above are tracked formally in `14_OPEN_QUESTIONS_AND_DECISIONS.md` as decisions are made.)*
+*(Every item above is consolidated in `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` — the master decision register — together with all per-document Q-… series open questions and current assumptions.)*
 
 ---
 
-**Next step:** Create `01_PROJECT_OVERVIEW.md`.
+**Next step:** The documentation set (docs 00–25) is delivered. Recommended next actions: (1) resolve open questions via the `25_OPEN_QUESTIONS_AND_ASSUMPTIONS.md` master register, (2) remediate the findings in `DOCUMENTATION_AUDIT_REPORT.md` (CRITICAL/HIGH first), then (3) proceed to implementation.
